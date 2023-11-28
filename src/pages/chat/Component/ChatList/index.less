@@ -1,0 +1,78 @@
+.chat-list-block {
+  min-width: 300px;
+  width: 300px;
+
+  .search-box {
+    padding: 15px;
+    background-color: #f7f7f7;
+    display: flex;
+    align-items: center;
+
+    .add-chat-room{
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      background-color: #eaeaea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
+  }
+
+  .chat-list {
+    .chat-item {
+      width: 100%;
+      padding: 15px;
+      display: flex;
+      box-sizing: border-box;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+      }
+
+      .item-content {
+        width: calc(100% - 40px);
+        margin-left: 5px;
+        display: flex;
+        justify-content: space-between;
+        flex-shrink: 0;
+
+        .item-left {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: calc(100% - 80px);
+
+          .item-username {
+            font-size: 14px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          .item-lastMsg {
+            font-size: 12px;
+            color: #cbcbcb;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+
+        .item-right {
+          width: 80px;
+          font-size: 12px;
+          color: #cbcbcb;
+          text-align: end;
+        }
+      }
+
+
+    }
+  }
+
+}

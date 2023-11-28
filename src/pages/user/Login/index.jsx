@@ -1,9 +1,21 @@
 import React from "react";
 import './index.less'
 import {Button, Checkbox, Form, Input} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons/lib/icons";
+import {login} from "@/services/user";
+import {isEmpty} from 'lodash'
+import {useNavigate} from 'react-router-dom'
+import {LockOutlined, UserOutlined} from "@ant-design/icons";
 
 export const Login = () => {
+    const navigateTo = useNavigate()
+
+    const onFinish = async (values) => {
+        const res = await login(values)
+        if (!isEmpty(res)) {
+            navigateTo('/chat')
+        }
+    }
+
     return (
         <div className={'bg'}>
             <div className={'login-block'}>
@@ -12,12 +24,13 @@ export const Login = () => {
                     name="normal_login"
                     className="login-form"
                     initialValues={{remember: true}}
+                    onFinish={onFinish}
                 >
                     <Form.Item
-                        name="username"
-                        rules={[{required: true, message: 'Please input your Username!'}]}
+                        name="telephone"
+                        rules={[{required: true, message: 'Please input your Telephone!'}]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
+                        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Telephone"/>
                     </Form.Item>
                     <Form.Item
                         name="password"
@@ -43,7 +56,7 @@ export const Login = () => {
                         <Button type="primary" htmlType="submit" className="login-form-button">
                             Sign in
                         </Button>
-                        Or <a href="">register now!</a>
+                        Or <a href="#/register">register now!</a>
                     </Form.Item>
                 </Form>
             </div>

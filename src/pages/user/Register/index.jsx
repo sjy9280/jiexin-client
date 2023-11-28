@@ -2,14 +2,19 @@ import React from "react";
 import './index.less'
 import {Button, Form, Input} from "antd";
 import {LockOutlined, PhoneOutlined, UserOutlined} from "@ant-design/icons/lib/icons";
-import axios from "axios";
+import {register} from "../../../services/user";
+import {isEmpty} from 'lodash'
+import {useNavigate} from "react-router-dom";
+
 
 const Register = () => {
+    const navigateTo = useNavigate();
 
     const onFinish = async (values) => {
-        const res = await axios.post('http://localhost:3500/user/register', values, {
-            headers: {"Content-Type": "application/x-www-form-urlencoded"},
-        })
+        const res = await register(values)
+        if (!isEmpty(res)) {
+            navigateTo('/login')
+        }
     }
 
     return (
